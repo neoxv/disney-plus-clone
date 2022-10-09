@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
 } from "react-router-dom";
@@ -16,15 +16,10 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <Switch>
-          <Route path="/detail">
-            <Detail/>
-          </Route>
-
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
       </Router>
     </div>
   );
