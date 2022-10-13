@@ -1,10 +1,30 @@
-import React from 'react'
+import { collection, query, getDocs, onSnapshot } from 'firebase/firestore'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import db from '../firebase'
 import ImageSlider from './ImageSlider'
 import Movies from './Movies'
 import Viewers from './Viewers'
+import { setMovies } from '../features/movie/movieSlice'
 
 function Home() {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    const moviesData = async()=>{
+      const q = query(collection(db, "movies"));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const movies = [];
+        querySnapshot.forEach((doc) => {
+          movies.push({ id: doc.id, ...doc.data() });
+        });
+      dispatch(setMovies(movies))
+      });
+    }
+    moviesData()
+
+  },[])
+
   return (
     <Container>
       <ImageSlider/>
