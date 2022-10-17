@@ -1,15 +1,37 @@
-import React from 'react'
+import { doc, getDoc } from 'firebase/firestore'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { selectMovies } from '../features/movie/movieSlice'
+import db from '../firebase'
 
 function Detail() {
+  const {id} = useParams();
+  const [movie, setMovie] = useState()
+  useEffect(() => {
+    const getMovie = async ()=>{
+      const docRef = doc(db, "movies", id);
+      const docSnap = await getDoc(docRef);
+
+      if(docSnap.exists()){
+        setMovie(docSnap.data())
+      }else{
+        console.log("it doesnt")
+      }
+    }
+    getMovie()
+  }, [])
+
+  
   return (
     <Container>
         <Background>
-          <img src="/images/coco.jpg" />
+          <img src={movie?.backgroundImg} />
         </Background>
 
         <ImageTitle>
-          <img src="/images/coco-title.png" />
+        <img src={movie?.titleImg} />
         </ImageTitle>
 
         <Controls>
@@ -29,12 +51,9 @@ function Detail() {
             </GroupWatchButton>
         </Controls>
         <SubTitle>
-        2005 | 13+ | 1h 17m | Family Movies
+        {movie?.SubTitle}
         </SubTitle>
-        <Description>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </Description>
+        <Description>{movie?.description} </Description>
 
     </Container>
   )
@@ -66,6 +85,7 @@ const Background = styled.div`
 
 const ImageTitle = styled.div`
   margin-top: 50px;
+  margin-bottom:10px;
   height: 30vh;
   min-height: 170px;
   width: 30vw;

@@ -12,14 +12,13 @@ function Home() {
   const dispatch = useDispatch()
   useEffect(()=>{
     const moviesData = async()=>{
-      const q = query(collection(db, "movies"));
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const movies = [];
-        querySnapshot.forEach((doc) => {
-          movies.push({ id: doc.id, ...doc.data() });
-        });
-      dispatch(setMovies(movies))
+      const querySnapshot = await getDocs(collection(db, "movies"));
+      const movies = [];
+      querySnapshot.forEach((doc) => {
+        movies.push({ id: doc.id, ...doc.data() });
       });
+
+      dispatch(setMovies(movies))
     }
     moviesData()
 
