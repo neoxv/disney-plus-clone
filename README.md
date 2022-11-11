@@ -10,11 +10,19 @@ https://disney-plus-clone-b010b.web.app/
 
 ## Screenshots
 
-![App Screenshot](https://disney-plus-clone-b010b.web.app/screenshot_2.png?text=App+Screenshot+Here)
-![App Screenshot](https://disney-plus-clone-b010b.web.app/screenshot_4.png?text=App+Screenshot+Here)
-![App Screenshot](https://disney-plus-clone-b010b.web.app/screenshot_5.png?text=App+Screenshot+Here)
-![App Screenshot](https://disney-plus-clone-b010b.web.app/screenshot_6.png?text=App+Screenshot+Here)
-![App Screenshot](https://disney-plus-clone-b010b.web.app/screenshot_1.png?text=App+Screenshot+Here)
+### Home Page
+![App Screenshot](/public/screenshot_4.png?text=App+Screenshot+Here)
+
+### Movies List
+![App Screenshot](/public/screenshot_5.png?text=App+Screenshot+Here)
+
+### Details Page
+![App Screenshot](/public/screenshot_2.png?text=App+Screenshot+Here)
+
+### Logout Landing Page
+![App Screenshot](/public/screenshot_3.png?text=App+Screenshot+Here)
+
+
 
 
 ## Installation
